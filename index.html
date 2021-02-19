@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandbox validation form</title>
+  <link rel="stylesheet" href="assets/style/style.css">
+</head>
+<body>
+  <main>
+    <form novalidate action="index.html" method="POST" name="inscription" id="form">
+      <p class="form-control">
+        <label for="lastName">Votre nom *</label>
+        <input type="text" id="lastName" name="lastName">
+        <small aria-live="polite"></small>
+      </p>
+      <p class="form-control">
+        <label for="firstName">Votre prénom *</label>
+        <input type="text" id="firstName" name="firstName">
+        <small aria-live="polite"></small>
+      </p>
+      <p class="form-control">
+        <label for="email">Votre e-mail *</label>
+        <input type="email" id="email" name="email">
+        <small aria-live="polite"></small>
+      </p>
+      <p class="form-control">
+        <label for="email2">Vérifiez votre e-mail *</label>
+        <input type="email" id="email2" name="email2">
+        <small aria-live="polite"></small>
+      </p>
+      <p class="form-control">
+        <label for="number">Nombre *</label>
+        <input type="text" id="number" name="number">
+        <small aria-live="polite"></small>
+      </p>
+      <fieldset>
+        <legend>Choisissez votre option *</legend>
+        <ul class="form-control">
+          <li>
+            <input type="radio" name="option" id="option1" value="option1">
+            <label for="option1">Option 1</label>
+          </li>
+          <li>
+            <input type="radio" name="option" id="option2" value="option2">
+            <label for="option2">Option 2</label>
+          </li>
+          <li>
+            <input type="radio" name="option" id="option3" value="option3">
+            <label for="option3">Option 3</label>
+          </li>
+        </ul>
+        <small aria-live="polite"></small>
+      </fieldset>
+      <hr>
+      <p class="form-control">
+        <input type="checkbox" id="regTerms" name="regTerms" value="1">
+        <label for="regTerms">J'accepte les <a href="#">terms & conditions</a><strong> *</strong></label>
+        <small aria-live="polite"></small>
+      </p>
+      <p>
+        <input type="checkbox" id="acceptNews" name="acceptNews" value="2">
+        <label for="accept-news">Je souhaite recevoir les newsletters 💌</label>
+      </p>
+      <button type="submit" class="btn">Je valide mon inscription</button>
+    </form>
+  </main>
+  <script type="text/javascript" src="assets/js/form.js"></script>
+</body>
+</html>
