@@ -5,11 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sandbox validation form</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style/style.css">
 </head>
 <body>
   <main>
+    <button class="btn btn-inscription">Je m'inscris !</button>
     <form novalidate action="index.html" method="POST" name="inscription" id="form">
+      <button class="btn-close">❌</button>
       <p class="form-control">
         <label for="lastName">Votre nom *</label>
         <input type="text" id="lastName" name="lastName">
@@ -35,7 +39,7 @@
         <input type="text" id="number" name="number">
         <small aria-live="polite"></small>
       </p>
-      <fieldset class="test">
+      <fieldset>
         <legend>Choisissez votre option *</legend>
         <ul>
           <li>
@@ -55,8 +59,8 @@
       </fieldset>
       <hr>
       <p class="checkbox">
-        <input type="checkbox" id="acceptNews" name="acceptNews" value="2">
-        <label for="accept-news">Je souhaite recevoir les newsletters 💌</label>
+        <input type="checkbox" id="newsletter" name="newsletter" value="2">
+        <label for="newsletter">Je souhaite recevoir les newsletters <span class="icon disappear">💌</span></label>
       </p>
       <p class="form-control checkbox">
         <input type="checkbox" id="regTerms" name="regTerms" value="1">
@@ -64,6 +68,9 @@
         <small aria-live="polite"></small>
       </p>
       <button type="submit" class="btn">Je valide mon inscription</button>
+      <p class="appreciation-msg msg1">Merci pour votre</p>
+      <p class="appreciation-msg msg2">inscription</p>
+      <p class="appreciation-msg msg3">😎</p>
     </form>
   </main>
   <script type="text/javascript" src="assets/js/form.js"></script>

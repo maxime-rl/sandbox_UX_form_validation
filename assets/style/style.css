@@ -226,7 +226,13 @@ p {
 
 small {
   margin: 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 576px) {
+  small {
+    font-size: 1.2rem;
+  }
 }
 
 input {
@@ -266,6 +272,26 @@ hr {
   opacity: 0.3;
 }
 
+/*********** Utility classes ***********/
+
+.disappear {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.appear {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
 /*********** Form ***********/
 
 main {
@@ -278,9 +304,9 @@ main {
 }
 
 form {
-  position: relative;
-  display: flex;
+  display: none;
   flex-direction: column;
+  position: relative;
   padding: 2rem 1.5rem 3rem 1.5rem;
   border-radius: 4px;
   background-color: var(--white);
@@ -316,6 +342,14 @@ form {
 .form-control.error small {
   visibility: visible;
   color: var(--error);
+  font-weight: 700;
+}
+
+@media (min-width: 576px) {
+
+  .form-control.error small {
+    font-weight: normal;
+  }
 }
 
 .form-control.success small {
@@ -381,13 +415,12 @@ fieldset label {
   bottom: -17px;
 }
 
-button {
+.btn {
   display: block;
   position: relative;
   z-index: 1;
   margin-top: 2rem;
   padding: 0.8rem;
-  width: 100%;
   border-radius: 2px;
   font-weight: 600;
   border: 2px solid var(--lighten-grey);
@@ -411,4 +444,85 @@ button {
 .btn:hover.btn::after {
   opacity: 1;
   transition: all 0.2s ease-in-out;
+}
+
+.btn-inscription {
+  margin: 0;
+}
+
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-close:focus {
+  outline: none;
+}
+
+/* Appear appreciation-msg */
+.appreciation-msg {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  left: 0;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.msg1 {
+  top: 38%;
+  opacity: 0;
+}
+
+.msg2 {
+  top: 45%;
+  opacity: 0;
+}
+
+.msg3 {
+  top: 55%;
+  opacity: 0;
+}
+
+.appreciation-appear-msg {
+  animation: appear-msg 0.3s forwards;
+}
+
+.appreciation-appear-smiley {
+  animation: appear-smiley 0.4s forwards;
+}
+
+@keyframes appear-msg {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(-30%);
+    animation: cubic-bezier(.61,.92,.88,.29);
+    opacity: 1;
+  }
+}
+
+@keyframes appear-smiley {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(-40%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-30%);
+    opacity: 1;
+  }
 }
