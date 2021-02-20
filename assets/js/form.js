@@ -1,7 +1,24 @@
 // DOM elements
 const form = document.querySelector('#form');
+const elementsForm = document.querySelectorAll('.form-control, .checkbox, fieldset, hr, button[type=submit]');
+const btnInscription = document.querySelector('.btn-inscription');
+const btnClose = document.querySelector('.btn-close');
+let commentOption = document.querySelector('.comment-option');
+const appreciationMsg1 = document.querySelector('.msg1');
+const appreciationMsg2 = document.querySelector('.msg2');
+const appreciationMsg3 = document.querySelector('.msg3');
 
-// *********** listen to modification inputs ***********
+// *********** listening to DOM elements ***********
+
+// listen btn inscription
+btnInscription.addEventListener('click', function() {
+  openForm(this);
+})
+
+// listen btn close form
+btnClose.addEventListener('click', function() {
+  closeForm(this);
+})
 
 // listen last name input
 form.lastName.addEventListener('change', function() {
@@ -28,16 +45,19 @@ form.number.addEventListener('change', function() {
   validNumber(this);
 })
 
+// listen newsletter input
+form.newsletter.addEventListener('change', function() {
+  newsletter(this);
+})
+
 // listen registration terms input
 form.regTerms.addEventListener('change', function() {
   validRegTerms(this);
 })
 
 // *********** listen to submit form ***********
-
 form.addEventListener('submit', function(e) {
   e.preventDefault();
-  
   if (
     validLastName(lastName) && 
     validFirstName(firstName) && 
@@ -46,18 +66,47 @@ form.addEventListener('submit', function(e) {
     validNumber(number) && 
     validOption() && 
     validRegTerms(regTerms)) {
-    console.log('Inscription réalisé avec succès');
 
-  } else {
-    console.log('Certains champs sont invalides');
-  }
+    appearAppreciationMsg();
+  } 
 })
+
+// *********** Open form ***********
+const openForm = function() {
+  form.reset();
+  setSuccessFor(lastName, '');
+  setSuccessFor(firstName, '');
+  setSuccessFor(email, '');
+  setSuccessFor(email2, '');
+  setSuccessFor(number, '');
+  commentOption.innerText = '';
+  setSuccessFor(regTerms, '');
+  elementsForm.forEach(element => {
+    element.style.opacity = '1';
+  });
+  appreciationMsg1.style.display ='none';
+  appreciationMsg2.style.display ='none';
+  appreciationMsg3.style.display ='none';
+  appreciationMsg1.classList.remove('appreciation-appear-msg');
+  appreciationMsg2.classList.remove('appreciation-appear-msg');
+  appreciationMsg3.classList.remove('appreciation-appear-smiley');
+  form.style.display = 'flex';
+  btnInscription.style.display = 'none';
+}
+
+// *********** Close form ***********
+function closeForm() {
+  elementsForm.forEach(element => {
+    element.classList.add('appear');
+  });
+  form.style.display = 'none';
+  btnInscription.style.display = 'block';
+}
 
 // *********** Last name validation ***********
 const validLastName = function(lastName) {
-
   if (lastName.value.length <= 2) {
-    setErrorFor(lastName, '❌ Veuillez entrer 2 caractères ou plus pour le champ du Nom');
+    setErrorFor(lastName, '⚠️ Veuillez entrer 2 caractères ou plus pour le champ du Nom');
     return false;
 
   } else {
@@ -68,9 +117,8 @@ const validLastName = function(lastName) {
 
 // *********** First name validation ***********
 const validFirstName = function(firstName) {
-
   if (firstName.value.length <= 2) {
-    setErrorFor(firstName, '❌ Veuillez entrer 2 caractères ou plus pour le champ du Prénom');
+    setErrorFor(firstName, '⚠️ Veuillez entrer 2 caractères ou plus pour le champ du Prénom');
     return false;
 
   } else {
@@ -83,35 +131,32 @@ const validFirstName = function(firstName) {
 const validEmail = function(email) {
   // Email regex
   const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
   if (!emailPattern.test(email.value)){
-    setErrorFor(email, '❌ Veuillez entrer une adresse email valide');
+    setErrorFor(email, '⚠️ Veuillez entrer une adresse email valide');
     return false;
 
   } else {
-    setSuccessFor(email, '✔️ L\'adresse email est valide');
+    setSuccessFor(email, '');
     return true;
   }
 }
 
 // *********** Email verification ***********
 const validEmail2 = function(email2) {
-
   if (email.value != email2.value){
-    setErrorFor(email2, '❌ L\'adresse email n\'est pas identique');
+    setErrorFor(email2, '⚠️ L\'adresse email n\'est pas identique');
     return false;
 
   } else {
-    setSuccessFor(email2, '✔️ L\'adresse email est identique');
+    setSuccessFor(email2, '');
     return true;
   }
 }
 
 // *********** Number verification ***********
 const validNumber = function(number) {
-
   if ((number.value == 0) || (isNaN(number.value))) {
-    setErrorFor(number, '❌ Veuillez indiquer une valeur numérique');
+    setErrorFor(number, '⚠️ Veuillez indiquer une valeur numérique');
     return false;
 
   } else {
@@ -123,7 +168,6 @@ const validNumber = function(number) {
 // *********** Option validation ***********
 const validOption = function() {
   const options = document.querySelectorAll('input[type=radio][name="option"]');
-  let commentOption = document.querySelector('.comment-option');
   let checkOption;
   // options iteration 
   for (let i = 0; i < options.length; i++) {
@@ -151,16 +195,21 @@ const validOption = function() {
     return true;
 
   } else {
-    commentOption.innerText = '❌ Veuillez choisir une option';
+    commentOption.innerText = '⚠️ Veuillez choisir une option';
     return false;
   }
 }
 
+// *********** Newsletter animation ***********
+const newsletter = function() {
+  const iconNews = document.querySelector('.icon');
+  iconNews.classList.toggle('appear');
+}
+
 // *********** Registration terms validation ***********
 const validRegTerms = function(regTerms) {
-
   if (!regTerms.checked) {
-    setErrorFor(regTerms, '❌ Veuillez accepter les terms de l\'inscription');
+    setErrorFor(regTerms, '⚠️ Veuillez accepter les terms de l\'inscription');
     return false;
 
   } else {
@@ -169,11 +218,10 @@ const validRegTerms = function(regTerms) {
   }
 }
 
-// *********** Comments management ***********
+// *********** Error/success comments management ***********
 function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const comment = formControl.querySelector('small');
-
   comment.innerText = message;
   formControl.classeName = 'form-control';
   formControl.classList.add('error');
@@ -184,8 +232,41 @@ function setSuccessFor(input, message) {
   const formControl = input.parentElement;
   const comment = formControl.querySelector('small');
   const fieldset = input.parentElement;
-
   comment.innerText = message;
   formControl.classList.add('success');
   formControl.classList.remove('error');
 }
+
+// *********** Appreciation message ***********
+function appearAppreciationMsg() {
+  elementsForm.forEach(element => {
+    element.style.opacity = '0';
+  });
+
+  appreciationMsg1.style.display ='block';
+  appreciationMsg2.style.display ='block';
+  appreciationMsg3.style.display ='block';
+
+  setTimeout( function() {
+    appreciationMsg1.classList.add('appreciation-appear-msg');
+  }, 200);
+
+  setTimeout( function() {
+    appreciationMsg2.classList.add('appreciation-appear-msg');
+  }, 300);
+
+  setTimeout( function() {
+    appreciationMsg3.classList.add('appreciation-appear-smiley');
+  }, 400);
+}
+
+// *********** Test disable enter key ***********
+// temporary solution for keyCode, is deprecated
+window.addEventListener('keydown', function(e) {
+  if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
+      if (e.target.nodeName == 'INPUT' && e.target.type == 'text' || e.target.type == 'email' || e.target.type == 'number') {
+          e.preventDefault();
+          return false;
+      }
+  }
+}, true);
