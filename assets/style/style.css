@@ -299,7 +299,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--back-color);
 }
 
@@ -307,7 +307,7 @@ form {
   display: none;
   flex-direction: column;
   position: relative;
-  padding: 2rem 1.5rem 3rem 1.5rem;
+  padding: 1.5rem 1.5rem 3rem 1.5rem;
   border-radius: 4px;
   background-color: var(--white);
   box-shadow: var(--shadow);
@@ -323,8 +323,14 @@ form {
 
 .form-control {
   position: relative;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.2rem;
   padding-bottom: 1.5rem;
+}
+
+@media (min-width: 576px) {
+  .form-control {
+    margin-bottom: 0.8rem;
+  }
 }
 
 .form-control label {
@@ -402,9 +408,19 @@ fieldset label {
 }
 
 .checkbox label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 0 0.1rem;
-  padding: 0 1rem 0;
+  padding: 0 0 0 0.7rem;
   font-weight: 400;
+}
+
+@media (min-width: 576px) {
+
+  .checkbox label {
+    padding: 0 0 0 1rem;
+  }
 }
 
 .checkbox input {
@@ -413,6 +429,17 @@ fieldset label {
 
 .checkbox small {
   bottom: -17px;
+}
+
+.icon {
+  padding: 0 0 0 0.4rem;
+}
+
+@media (min-width: 576px) {
+
+  .icon {
+    padding: 0 1rem;
+  }
 }
 
 .btn {
