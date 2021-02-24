@@ -198,6 +198,36 @@ template {
   --shadow: 0 4px 10px 0 rgb(228 228 228);
 }
 
+@keyframes appear-msg {
+  from {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(-30%);
+    animation: cubic-bezier(.61,.92,.88,.29);
+    opacity: 1;
+  }
+}
+
+@keyframes appear-smiley {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(-40%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-30%);
+    opacity: 1;
+  }
+}
+
 /*********** Custom CSS ***********/
 
 html {
@@ -352,7 +382,6 @@ form {
 }
 
 @media (min-width: 576px) {
-
   .form-control.error small {
     font-weight: normal;
   }
@@ -417,7 +446,6 @@ fieldset label {
 }
 
 @media (min-width: 576px) {
-
   .checkbox label {
     padding: 0 0 0 1rem;
   }
@@ -436,7 +464,6 @@ fieldset label {
 }
 
 @media (min-width: 576px) {
-
   .icon {
     padding: 0 1rem;
   }
@@ -522,34 +549,4 @@ fieldset label {
 
 .appreciation-appear-smiley {
   animation: appear-smiley 0.4s forwards;
-}
-
-@keyframes appear-msg {
-  from {
-    transform: translateY(0);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(-30%);
-    animation: cubic-bezier(.61,.92,.88,.29);
-    opacity: 1;
-  }
-}
-
-@keyframes appear-smiley {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-  }
-
-  50% {
-    transform: translateY(-40%);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-30%);
-    opacity: 1;
-  }
 }
